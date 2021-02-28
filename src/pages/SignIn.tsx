@@ -5,6 +5,8 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import { Enter } from '../components/modalWindow/Enter';
+import { Register } from '../components/modalWindow/Register';
 const TWITTER_BLUE = '#1DA1F2';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,6 +74,16 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn: React.FunctionComponent = (props) => {
     const classes = useStyles();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <>
             <div className={classes.wrapper}>
@@ -102,7 +114,8 @@ const SignIn: React.FunctionComponent = (props) => {
                         <Typography><b>Присоединяйтесь к Твиттеру прямо сейчас!</b></Typography>
                         <br />
                         <Button className={classes.buttonReg} variant="contained" color="primary" fullWidth>Зарегистрироваться</Button>
-                        <Button variant="outlined" color="primary" fullWidth>Войти</Button>
+                        <Button onClick={handleClickOpen} variant="outlined" color="primary" fullWidth>Войти</Button>
+                        <Enter open={open} handleClose={handleClose} />
                     </div>
                 </div>
             </div>
